@@ -9,7 +9,7 @@ jobs:
       - name: Start WordPress
         run: |
           docker run -d --name wp -p 8080:80 -e WORDPRESS_DB_HOST=db -e WORDPRESS_DB_NAME=wp -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wp wordpress:6.4
-          sleep 30   # 等容器启动
+          sleep 30
 
       - uses: actions/setup-python@v4
         with:
