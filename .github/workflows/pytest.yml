@@ -6,10 +6,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Start MySQL
+        run: |
+          docker run -d --name db -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wp -p 3306:3306 mysql:5.7
+          sleep 15
+
       - name: Start WordPress
         run: |
-          docker run -d --name wp -p 8080:80 -e WORDPRESS_DB_HOST=db -e WORDPRESS_DB_NAME=wp -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wp wordpress:6.4
-          sleep 30
+          docker run -d --name wp -p 8080:80 \
+            -e WORDPRESS_DB_HOST=db:3306 \
+            -e WORDPRESS_DB_NAME=wp \
+            -e WORDPRESS_DB_USER=root \
+            -e WORDPRESS_DB_PASSWORD=root \
+            -e WORDPRESS_TABLE_PREFIX=wp_ \
+            wordpress:6.4
+          sleep 45   # 给 WP 足够启动时间
+
+      - name: Create WordPress user
+        run: |
+          curl -X POST http://localhost:8080/wp-json/wp/v2/users \
+            -H "Content-Type: application/json" \
+            -d '{"username":"anna","password":"cxTK 4dQy Mcxb yezC 10RG Een7","email":"a@a.com"}'
 
       - uses: actions/setup-python@v4
         with:
