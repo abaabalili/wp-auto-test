@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Feb 05 11:21:19 CST 2026","Thu Feb 05 11:21:19 CST 2026","130","","test_wp_crud","","","","test_xss_inject_and_filter[javascript:alert(3)]",""
+"passed","Thu Feb 05 11:21:19 CST 2026","Thu Feb 05 11:21:19 CST 2026","154","","test_wp_crud","","","","test_xss_inject_and_filter[<script>alert(1)</script>]",""
+"passed","Thu Feb 05 11:21:19 CST 2026","Thu Feb 05 11:21:19 CST 2026","147","","test_wp_crud","","","","test_xss_inject_and_filter[<img src=x onerror=alert(2)>]",""
+"passed","Thu Feb 05 11:21:19 CST 2026","Thu Feb 05 11:21:19 CST 2026","211","","test_wp_crud","","","","test_create_post",""
